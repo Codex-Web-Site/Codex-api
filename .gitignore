@@ -1,0 +1,18 @@
+# Environments
+.env
+.env.development
+.env.production
+.env.test
+
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
