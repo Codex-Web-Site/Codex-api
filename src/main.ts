@@ -8,8 +8,15 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   // Activer CORS pour autoriser les requêtes depuis le frontend
+  const whitelist = ['http://localhost:3000', 'https://codex-client-six.vercel.app'];
   app.enableCors({
-    origin: 'http://localhost:3000', // L'URL de votre frontend
+    origin: function (origin, callback) {
+      if (!origin || whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
